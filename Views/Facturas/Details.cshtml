@@ -1,0 +1,75 @@
+﻿@model MicroLabsFinal.Models.Factura
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codigoFactura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigoFactura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoCambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoCambio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moneda.tipoMoneda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moneda.tipoMoneda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modoPago.tipopPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modoPago.tipopPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proveedor.nombreProveedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proveedor.nombreProveedor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.numeroFactura }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

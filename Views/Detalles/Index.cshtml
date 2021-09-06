@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MicroLabsFinal.Models.Detalle>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar Por nombre: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precioUnitario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.montoIVA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Factura.codigoFactura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IVA.idIVA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.nombreProducto)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precioUnitario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.montoIVA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Factura.codigoFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IVA.idIVA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.nombreProducto)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idDetalle }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idDetalle }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idDetalle })
+            </td>
+        </tr>
+    }
+
+</table>

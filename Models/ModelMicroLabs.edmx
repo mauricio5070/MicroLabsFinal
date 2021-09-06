@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_a78ddc_mircrolabsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="idDetalle" />
+          </Key>
+          <Property Name="idDetalle" Type="int" Nullable="false" />
+          <Property Name="numeroFactura" Type="int" Nullable="false" />
+          <Property Name="codigoProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precioUnitario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="montoIVA" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="subTotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="idIVA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="numeroFactura" />
+          </Key>
+          <Property Name="numeroFactura" Type="int" Nullable="false" />
+          <Property Name="codigoFactura" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCompra" Type="date" Nullable="false" />
+          <Property Name="monedaID" Type="int" Nullable="false" />
+          <Property Name="tipoCambio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="pagoID" Type="int" Nullable="false" />
+          <Property Name="codigoProveedor" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="IVA">
+          <Key>
+            <PropertyRef Name="idIVA" />
+          </Key>
+          <Property Name="idIVA" Type="int" Nullable="false" />
+          <Property Name="porcentaje" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="modoPago">
+          <Key>
+            <PropertyRef Name="pagoID" />
+          </Key>
+          <Property Name="pagoID" Type="int" Nullable="false" />
+          <Property Name="tipopPago" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="monedaID" />
+          </Key>
+          <Property Name="monedaID" Type="int" Nullable="false" />
+          <Property Name="tipoMoneda" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="codigoProducto" />
+          </Key>
+          <Property Name="codigoProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipoProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcionProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaVencimiento" Type="date" Nullable="false" />
+          <Property Name="cantCajas" Type="int" Nullable="false" />
+          <Property Name="cantUnidades" Type="int" Nullable="false" />
+          <Property Name="codigoProveedor" Type="int" Nullable="false" />
+          <Property Name="nombreQuickbooks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="totalProducto" Type="int" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="codigoProveedor" />
+          </Key>
+          <Property Name="codigoProveedor" Type="int" Nullable="false" />
+          <Property Name="nombreProveedor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correoProveedor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefonoProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="nombreRol" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Factura">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="numeroFactura" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="numeroFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IVA">
+          <End Role="IVA" Type="Self.IVA" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IVA">
+              <PropertyRef Name="idIVA" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="idIVA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Moneda">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="monedaID" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="monedaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoTipo">
+          <End Role="modoPago" Type="Self.modoPago" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modoPago">
+              <PropertyRef Name="pagoID" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="pagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="codigoProducto" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="codigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigoProveedor" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="codigoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProveedorP">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigoProveedor" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="codigoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a78ddc_mircrolabsModelStoreContainer">
+          <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IVA" EntityType="Self.IVA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="modoPago" EntityType="Self.modoPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moneda" EntityType="Self.Moneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Factura" Association="Self.FK_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IVA" Association="Self.FK_IVA">
+            <End Role="IVA" EntitySet="IVA" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Moneda" Association="Self.FK_Moneda">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoTipo" Association="Self.FK_PagoTipo">
+            <End Role="modoPago" EntitySet="modoPago" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto" Association="Self.FK_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedor" Association="Self.FK_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProveedorP" Association="Self.FK_ProveedorP">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rol" Association="Self.FK_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_a78ddc_mircrolabsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="numeroFactura" />
+          </Key>
+          <Property Name="numeroFactura" Type="Int32" Nullable="false" />
+          <Property Name="codigoFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCompra" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="monedaID" Type="Int32" Nullable="false" />
+          <Property Name="tipoCambio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="pagoID" Type="Int32" Nullable="false" />
+          <Property Name="codigoProveedor" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Moneda" Relationship="Self.FK_Moneda" FromRole="Factura" ToRole="Moneda" />
+          <NavigationProperty Name="modoPago" Relationship="Self.FK_PagoTipo" FromRole="Factura" ToRole="modoPago" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Proveedor" FromRole="Factura" ToRole="Proveedor" />
+          <NavigationProperty Name="Detalle" Relationship="db_a78ddc_mircrolabsModel.FK_Factura" FromRole="Factura" ToRole="Detalle" />
+        </EntityType>
+        <EntityType Name="IVA">
+          <Key>
+            <PropertyRef Name="idIVA" />
+          </Key>
+          <Property Name="idIVA" Type="Int32" Nullable="false" />
+          <Property Name="porcentaje" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Detalle" Relationship="db_a78ddc_mircrolabsModel.FK_IVA" FromRole="IVA" ToRole="Detalle" />
+        </EntityType>
+        <EntityType Name="modoPago">
+          <Key>
+            <PropertyRef Name="pagoID" />
+          </Key>
+          <Property Name="pagoID" Type="Int32" Nullable="false" />
+          <Property Name="tipopPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK_PagoTipo" FromRole="modoPago" ToRole="Factura" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="monedaID" />
+          </Key>
+          <Property Name="monedaID" Type="Int32" Nullable="false" />
+          <Property Name="tipoMoneda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK_Moneda" FromRole="Moneda" ToRole="Factura" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="codigoProveedor" />
+          </Key>
+          <Property Name="codigoProveedor" Type="Int32" Nullable="false" />
+          <Property Name="nombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correoProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefonoProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK_Proveedor" FromRole="Proveedor" ToRole="Factura" />
+          <NavigationProperty Name="Producto" Relationship="db_a78ddc_mircrolabsModel.FK_ProveedorP" FromRole="Proveedor" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="nombreRol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Rol" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_Rol" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <Association Name="FK_Moneda">
+          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="monedaID" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="monedaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoTipo">
+          <End Role="modoPago" Type="Self.modoPago" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modoPago">
+              <PropertyRef Name="pagoID" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="pagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigoProveedor" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="codigoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a78ddc_mircrolabsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Factura" EntityType="Self.Factura" />
+          <EntitySet Name="IVA" EntityType="Self.IVA" />
+          <EntitySet Name="modoPago" EntityType="Self.modoPago" />
+          <EntitySet Name="Moneda" EntityType="Self.Moneda" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Moneda" Association="Self.FK_Moneda">
+            <End Role="Moneda" EntitySet="Moneda" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoTipo" Association="Self.FK_PagoTipo">
+            <End Role="modoPago" EntitySet="modoPago" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedor" Association="Self.FK_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rol" Association="Self.FK_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="Detalle" EntityType="db_a78ddc_mircrolabsModel.Detalle" />
+          <AssociationSet Name="FK_Factura" Association="db_a78ddc_mircrolabsModel.FK_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IVA" Association="db_a78ddc_mircrolabsModel.FK_IVA">
+            <End Role="IVA" EntitySet="IVA" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <EntitySet Name="Producto" EntityType="db_a78ddc_mircrolabsModel.Producto" />
+          <AssociationSet Name="FK_Producto" Association="db_a78ddc_mircrolabsModel.FK_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProveedorP" Association="db_a78ddc_mircrolabsModel.FK_ProveedorP">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="idDetalle" />
+          </Key>
+          <Property Name="idDetalle" Type="Int32" Nullable="false" />
+          <Property Name="numeroFactura" Type="Int32" Nullable="false" />
+          <Property Name="codigoProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precioUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="montoIVA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="subTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="idIVA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Factura" Relationship="db_a78ddc_mircrolabsModel.FK_Factura" FromRole="Detalle" ToRole="Factura" />
+          <NavigationProperty Name="IVA" Relationship="db_a78ddc_mircrolabsModel.FK_IVA" FromRole="Detalle" ToRole="IVA" />
+          <NavigationProperty Name="Producto" Relationship="db_a78ddc_mircrolabsModel.FK_Producto" FromRole="Detalle" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK_Factura">
+          <End Type="db_a78ddc_mircrolabsModel.Factura" Role="Factura" Multiplicity="1" />
+          <End Type="db_a78ddc_mircrolabsModel.Detalle" Role="Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="numeroFactura" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="numeroFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IVA">
+          <End Type="db_a78ddc_mircrolabsModel.IVA" Role="IVA" Multiplicity="1" />
+          <End Type="db_a78ddc_mircrolabsModel.Detalle" Role="Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IVA">
+              <PropertyRef Name="idIVA" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="idIVA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="codigoProducto" />
+          </Key>
+          <Property Name="codigoProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombreProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipoProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcionProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaVencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cantCajas" Type="Int32" Nullable="false" />
+          <Property Name="cantUnidades" Type="Int32" Nullable="false" />
+          <Property Name="codigoProveedor" Type="Int32" Nullable="false" />
+          <Property Name="nombreQuickbooks" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="totalProducto" Type="Int32" />
+          <NavigationProperty Name="Detalle" Relationship="db_a78ddc_mircrolabsModel.FK_Producto" FromRole="Producto" ToRole="Detalle" />
+          <NavigationProperty Name="Proveedor" Relationship="db_a78ddc_mircrolabsModel.FK_ProveedorP" FromRole="Producto" ToRole="Proveedor" />
+        </EntityType>
+        <Association Name="FK_Producto">
+          <End Type="db_a78ddc_mircrolabsModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="db_a78ddc_mircrolabsModel.Detalle" Role="Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="codigoProducto" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="codigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProveedorP">
+          <End Type="db_a78ddc_mircrolabsModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="db_a78ddc_mircrolabsModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigoProveedor" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="codigoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_a78ddc_mircrolabsModelStoreContainer" CdmEntityContainer="db_a78ddc_mircrolabsEntities1">
+          <EntitySetMapping Name="Factura">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.Factura">
+              <MappingFragment StoreEntitySet="Factura">
+                <ScalarProperty Name="numeroFactura" ColumnName="numeroFactura" />
+                <ScalarProperty Name="codigoFactura" ColumnName="codigoFactura" />
+                <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
+                <ScalarProperty Name="monedaID" ColumnName="monedaID" />
+                <ScalarProperty Name="tipoCambio" ColumnName="tipoCambio" />
+                <ScalarProperty Name="pagoID" ColumnName="pagoID" />
+                <ScalarProperty Name="codigoProveedor" ColumnName="codigoProveedor" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IVA">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.IVA">
+              <MappingFragment StoreEntitySet="IVA">
+                <ScalarProperty Name="idIVA" ColumnName="idIVA" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="modoPago">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.modoPago">
+              <MappingFragment StoreEntitySet="modoPago">
+                <ScalarProperty Name="pagoID" ColumnName="pagoID" />
+                <ScalarProperty Name="tipopPago" ColumnName="tipopPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moneda">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.Moneda">
+              <MappingFragment StoreEntitySet="Moneda">
+                <ScalarProperty Name="monedaID" ColumnName="monedaID" />
+                <ScalarProperty Name="tipoMoneda" ColumnName="tipoMoneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="codigoProveedor" ColumnName="codigoProveedor" />
+                <ScalarProperty Name="nombreProveedor" ColumnName="nombreProveedor" />
+                <ScalarProperty Name="correoProveedor" ColumnName="correoProveedor" />
+                <ScalarProperty Name="telefonoProveedor" ColumnName="telefonoProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="nombreRol" ColumnName="nombreRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="correoUsuario" ColumnName="correoUsuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.Detalle">
+              <MappingFragment StoreEntitySet="Detalle">
+                <ScalarProperty Name="idIVA" ColumnName="idIVA" />
+                <ScalarProperty Name="subTotal" ColumnName="subTotal" />
+                <ScalarProperty Name="montoIVA" ColumnName="montoIVA" />
+                <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="codigoProducto" ColumnName="codigoProducto" />
+                <ScalarProperty Name="numeroFactura" ColumnName="numeroFactura" />
+                <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="db_a78ddc_mircrolabsModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="totalProducto" ColumnName="totalProducto" />
+                <ScalarProperty Name="nombreQuickbooks" ColumnName="nombreQuickbooks" />
+                <ScalarProperty Name="codigoProveedor" ColumnName="codigoProveedor" />
+                <ScalarProperty Name="cantUnidades" ColumnName="cantUnidades" />
+                <ScalarProperty Name="cantCajas" ColumnName="cantCajas" />
+                <ScalarProperty Name="fechaVencimiento" ColumnName="fechaVencimiento" />
+                <ScalarProperty Name="descripcionProducto" ColumnName="descripcionProducto" />
+                <ScalarProperty Name="tipoProducto" ColumnName="tipoProducto" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="codigoProducto" ColumnName="codigoProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

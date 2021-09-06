@@ -1,0 +1,92 @@
+﻿@model IEnumerable<MicroLabsFinal.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Productos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar Por nombre: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcionProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantCajas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantUnidades)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreQuickbooks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedor.nombreProveedor)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcionProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaVencimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantCajas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantUnidades)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreQuickbooks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedor.nombreProveedor)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.codigoProducto }) |
+                @Html.ActionLink("Details", "Details", new { id = item.codigoProducto }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.codigoProducto })
+            </td>
+        </tr>
+    }
+
+</table>

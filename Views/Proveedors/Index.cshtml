@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MicroLabsFinal.Models.Proveedor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Proveedores</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar Por nombre: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreProveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correoProveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefonoProveedor)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreProveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correoProveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefonoProveedor)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.codigoProveedor }) |
+                @Html.ActionLink("Details", "Details", new { id = item.codigoProveedor }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.codigoProveedor })
+            </td>
+        </tr>
+    }
+
+</table>

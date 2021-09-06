@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+
+
+    <div class="section-content section-bg-white-contrast diyfeLiveArea">
+        <div class="section-group section-group-content-wrapper-align ">
+            <div class="section-group section-group-content-wrapper ">
+                <div class="section-group section-group-content ">
+                    <div class="section-group section-group-text ">
+                        <div class="n module-type-header module-alias-sectionTitle "> <h1><span class="diyfeDecoration">BIENVENIDOS AL LABORATORIO&nbsp;MICROLABS</span></h1> </div><div class="n module-type-text module-alias-sectionDescription "></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="emotion-header" data-action="loadView" data-params="active" data-imagescount="10">
+        <img src="https://www.microlabscr.com/s/img/emotionheader.jpg?1618675361.920px.213px" id="emotion-header-img" alt="Vida útil al producto y seguridad al consumidor">
+
+        <!--<div id="ehSlideshowPlaceholder" style="visibility: visible;">
+            <div id="ehSlideShow" style="visibility: visible;"><div class="slide-container" style="background-color: rgb(238, 238, 238); display: block; top: 0px; left: 0px;"><img src="https://www.microlabscr.com/s/img/emotionheader_7.JPG?1618675361.920px.213px" class="rsf-slideshow-image" style="left: 0px; top: 0px;"></div></div>
+        </div>-->
+
+
+        <script type="text/javascript">
+        //<![CDATA[
+                diy.module.emotionHeader.slideShow.init({ slides: [{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader.jpg?1618675361.920px.213px","image_alt":"Vida \u00fatil al producto y seguridad al consumidor","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_1.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_2.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_3.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_4.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_5.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_6.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_7.JPG?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_8.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"},{"url":"https:\/\/www.microlabscr.com\/s\/img\/emotionheader_9.jpg?1618675361.920px.213px","image_alt":"","bgColor":"#EEEEEE"}] });
+        //]]>
+        </script>
+
+
+        <a href="https://www.microlabscr.com/">
+
+            <img id="emotion-header-logo" src="https://www.microlabscr.com/s/misc/logo.jpg?t=1627668387" alt="MICROLABS">
+
+        </a>
+
+        <div id="emotion-header-title-bg" style="top: 21.13%; left: 0%;"></div>
+
+        <strong id="emotion-header-title" style="text-align: center; top: 20.19%; left: 38.15%; visibility: hidden;">LABORATORIO MICROLABS</strong>
+        <div class="notranslate">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="emotion-header-title-svg" viewBox="0 0 479 43" preserveAspectRatio="xMinYMin meet" style="left: 38.149%; top: 20.188%; width: 52.065%; height: 20.188%; visibility: visible;"><text style="font-family:Helvetica, 'Helvetica Neue', 'Trebuchet MS', sans-serif;font-size:36px;font-style:normal;font-weight:normal;fill:#0325bc;line-height:1.2em;"><tspan x="50%" style="text-anchor: middle" dy="0.95em">LABORATORIO&nbsp;MICROLABS</tspan></text></svg>
+        </div>
+
+
+        <script type="text/javascript">
+    //<![CDATA[
+    (function ($) {
+        function enableSvgTitle() {
+                        var titleSvg = $('svg#emotion-header-title-svg'),
+                titleHtml = $('#emotion-header-title'),
+                emoWidthAbs = 920,
+                emoHeightAbs = 213,
+                offsetParent,
+                titlePosition,
+                svgBoxWidth,
+                svgBoxHeight;
+
+                        if (titleSvg.length && titleHtml.length) {
+                offsetParent = titleHtml.offsetParent();
+                titlePosition = titleHtml.position();
+                svgBoxWidth = titleHtml.width();
+                svgBoxHeight = titleHtml.height();
+
+                                titleSvg.get(0).setAttribute('viewBox', '0 0 ' + svgBoxWidth + ' ' + svgBoxHeight);
+                titleSvg.css({
+                   left: Math.roundTo(100 * titlePosition.left / offsetParent.width(), 3) + '%',
+                   top: Math.roundTo(100 * titlePosition.top / offsetParent.height(), 3) + '%',
+                   width: Math.roundTo(100 * svgBoxWidth / emoWidthAbs, 3) + '%',
+                   height: Math.roundTo(100 * svgBoxHeight / emoHeightAbs, 3) + '%'
+                });
+
+                titleHtml.css('visibility','hidden');
+                titleSvg.css('visibility','visible');
+            }
+        }
+
+
+            var posFunc = function($, overrideSize) {
+                var elems = [], containerWidth, containerHeight;
+                                    elems.push({
+                        selector: '#emotion-header-title',
+                        overrideSize: true,
+                        horPos: 79.58,
+                        vertPos: 25.14                    });
+                    lastTitleWidth = $('#emotion-header-title').width();
+                                                elems.push({
+                    selector: '#emotion-header-title-bg',
+                    horPos: 0,
+                    vertPos: 24.94                });
+
+                containerWidth = parseInt('920');
+                containerHeight = parseInt('213');
+
+                for (var i = 0; i < elems.length; ++i) {
+                    var el = elems[i],
+                        $el = $(el.selector),
+                        pos = {
+                            left: el.horPos,
+                            top: el.vertPos
+                        };
+                    if (!$el.length) continue;
+                    var anchorPos = $el.anchorPosition();
+                    anchorPos.$container = $('#emotion-header');
+
+                    if (overrideSize === true || el.overrideSize === true) {
+                        anchorPos.setContainerSize(containerWidth, containerHeight);
+                    } else {
+                        anchorPos.setContainerSize(null, null);
+                    }
+
+                    var pxPos = anchorPos.fromAnchorPosition(pos),
+                        pcPos = anchorPos.toPercentPosition(pxPos);
+
+                    var elPos = {};
+                    if (!isNaN(parseFloat(pcPos.top)) && isFinite(pcPos.top)) {
+                        elPos.top = pcPos.top + '%';
+                    }
+                    if (!isNaN(parseFloat(pcPos.left)) && isFinite(pcPos.left)) {
+                        elPos.left = pcPos.left + '%';
+                    }
+                    $el.css(elPos);
+                }
+
+                // switch to svg title
+                enableSvgTitle();
+            };
+
+                        var $emotionImg = jQuery('#emotion-header-img');
+            if ($emotionImg.length > 0) {
+                // first position the element based on stored size
+                posFunc(jQuery, true);
+
+                // trigger reposition using the real size when the element is loaded
+                var ehLoadEvTriggered = false;
+                $emotionImg.one('load', function(){
+                    posFunc(jQuery);
+                    ehLoadEvTriggered = true;
+                                        diy.module.emotionHeader.slideShow.start();
+                                    }).each(function() {
+                                        if(this.complete || typeof this.complete === 'undefined') {
+                        jQuery(this).load();
+                    }
+                });
+
+                                noLoadTriggeredTimeoutId = setTimeout(function() {
+                    if (!ehLoadEvTriggered) {
+                        posFunc(jQuery);
+                    }
+                    window.clearTimeout(noLoadTriggeredTimeoutId)
+                }, 5000);//after 5 seconds
+            } else {
+                jQuery(function(){
+                    posFunc(jQuery);
+                });
+            }
+
+                        if (jQuery.isBrowser && jQuery.isBrowser.ie8) {
+                var longTitleRepositionCalls = 0;
+                longTitleRepositionInterval = setInterval(function() {
+                    if (lastTitleWidth > 0 && lastTitleWidth != jQuery('#emotion-header-title').width()) {
+                        posFunc(jQuery);
+                    }
+                    longTitleRepositionCalls++;
+                    // try this for 5 seconds
+                    if (longTitleRepositionCalls === 5) {
+                        window.clearInterval(longTitleRepositionInterval);
+                    }
+                }, 1000);//each 1 second
+            }
+
+            }(jQuery));
+    //]]>
+        </script>
+
+    </div>
+
+</asp:Content>

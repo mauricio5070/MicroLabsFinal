@@ -1,0 +1,75 @@
+﻿@model MicroLabsFinal.Models.Detalle
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Detalle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precioUnitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precioUnitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.montoIVA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.montoIVA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Factura.codigoFactura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factura.codigoFactura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IVA.idIVA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IVA.idIVA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.nombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.nombreProducto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idDetalle }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

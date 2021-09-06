@@ -1,0 +1,81 @@
+﻿@model MicroLabsFinal.Models.Detalle
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Detalle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precioUnitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precioUnitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.montoIVA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.montoIVA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Factura.codigoFactura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factura.codigoFactura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IVA.idIVA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IVA.idIVA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.nombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.nombreProducto)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,91 @@
+﻿@model MicroLabsFinal.Models.Producto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcionProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaVencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaVencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantCajas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantCajas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantUnidades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantUnidades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreQuickbooks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreQuickbooks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proveedor.nombreProveedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proveedor.nombreProveedor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.codigoProducto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

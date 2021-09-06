@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MicroLabsFinal.Models.Factura>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Facturas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar Por nombre: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoFactura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaCompra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoCambio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Moneda.tipoMoneda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modoPago.tipopPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedor.nombreProveedor)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigoFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoCambio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Moneda.tipoMoneda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modoPago.tipopPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedor.nombreProveedor)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.numeroFactura }) |
+                @Html.ActionLink("Details", "Details", new { id = item.numeroFactura }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.numeroFactura })
+            </td>
+        </tr>
+    }
+
+</table>
